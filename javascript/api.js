@@ -43,6 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     chatForm.addEventListener("submit", async function (event) {
         event.preventDefault();
+        const img = document.createElement('img');
+        img.src = "./assets/images/phi.svg" //<-- met ta source ici
+        img.id = "phiIcon"
+        messageElement.appendChild(img)
         const userMessage = userInput.value.trim();
         if (!userMessage) return;
 
