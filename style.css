@@ -1,6 +1,6 @@
 body {
  font-family: Arial, sans-serif; 
- background-image:linear-gradient(to right, #e83232, blue ); 
+ background-image:linear-gradient(to right, #00a413, rgb(0, 0, 0) ); 
  margin: 0; 
  padding: 0; 
  line-height: 1.6;
@@ -10,22 +10,29 @@ body {
  align-items: center;
  }
 .chat-container {
-    width: 80%; 
+    min-width: 350px;
+    width: auto; 
     max-width: 700px; 
     max-height: 70vh;
     overflow: auto;
-    margin: 30px auto; 
-    background-image:linear-gradient(to right, blue, #e83232 ); 
+    margin: auto; 
     padding: 20px; 
-    border: 1px solid #dddddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); 
     border-radius: 8px;
+    opacity: 0.8;
+    filter: progid:DXImageTransform.MsdImaging(blur(10px));
+    padding-bottom: 40px;
+    color: white
 }
 .chat-form {
     display: flex;
     margin-top: 20px; 
     position: sticky;
     bottom: 10px;
+    align-items:  center;
+    justify-content: center;
+    
 }
 .user-input{
     background-color: #ea7d00;
@@ -35,28 +42,39 @@ body {
     border-radius: 4px;
     margin-right: 10px;
     font-size: 16px;
+    position: fixed;
 }
 .bouton {
-    background-color: #007bff;
-    color: rgb(255, 255, 255);
+    background-color: #00a413;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    bottom : 20px;
+    right: 480px;
+    position: fixed;
 }
 .bouton:hover{
-    background-color: #0056b3;
+    background-color: #00760e;
 }
 #user-input{
-    background-color: #ffffff;
+    opacity: 0.3; 
+    filter: progid:DXImageTransform.MsdImaging(blur(10px));
     flex-grow: 1;
     padding: 8px;
     border: 1px solid #000000;
     border-radius: 4px;
     margin-right: 8px;
     font-size: 18px;
+    position: fixed ;
+    bottom: 20px;
+    width: auto;
+    min-width: 200px;
+    height: auto;
 }
+
 .Titre {
     display: flex;
     justify-content: center;
@@ -74,6 +92,9 @@ body {
   height: auto;
   max-height: 400px;
   overflow-y: auto;
+  scrollbar-width: none;
+  text-align: left;
+  
 }
 
 @keyframes fadeInFromBottom {
@@ -86,10 +107,103 @@ body {
         transform: translateY(0px);
     }
 }
-.message{
-    animation: fadeInFromBottom 0.4s ease-out forwards;
-}
+
 #goatIcon{
     width: 30px;
     height: 25px;
+}
+@media (max-width: 768px) {
+ h1 {
+ font-size: 28px;
+ }
+
+ #chat-container {
+ width: 95%;
+ margin: 20px auto;
+ padding: 15px;
+ }
+
+ .message {
+ max-width: 85%;
+ padding: 10px 15px;
+ font-size: 14px;
+ }
+
+ #user-input,
+ #bouton {
+ padding: 10px 12px;
+ font-size: 15px;
+ bottom: 20px;
+ }
+ }
+
+ @media (max-width: 480px) {
+ h1 {
+ font-size: 22px;
+ }
+
+ #chat-container {
+ width: 100%;
+ margin: 0;
+ padding: 10px;
+ border-radius: 0;
+ box-shadow: none;
+ }
+
+ .message {
+ max-width: 90%;
+ font-size: 13px;
+ padding: 8px 12px;
+ border-radius: 15px;
+ }
+
+ #chat-form {
+ flex-direction: column;
+ padding: 8px;
+ }
+
+ #user-input {
+ margin-right: 0;
+ margin-bottom: 8px;
+ width: auto;
+ max-width: 200px;
+ min-width: 50px;
+ }
+
+ #bouton {
+ width: 100%;
+ bottom: 20px;
+ }
+}
+.messageGoat{
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    opacity: 0.8;
+    max-width: auto;
+    margin-top: 30px;
+    animation: scale-up-ver-bottom 0.4s ease;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+.messagetrinity{
+    background-color: #00a413;
+    opacity: 0.8;
+    border-radius: 15px;
+    max-width: auto;
+    animation: scale-up-ver-bottom 0.4s ease;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes scale-up-ver-bottom {
+  0% {
+    transform: scaleY(0.4);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
 }

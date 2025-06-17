@@ -19,11 +19,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const formattedText = formatCodeBlocks(text);
         textElement.innerHTML = formattedText;
 
-        if(sender === "Chat goated"){
+        if(sender === "Trinity on"){
+            messageElement.style.float = "right";
+            messageElement.classList = "messagetrinity"
+        }
+        
+        else{
             const img = document.createElement('img');
-            img.src = "./assets/images/goat.png" //<-- met ta source ici
+            img.src = "./assets/images/goat.svg" //<-- met ta source ici
             img.id = "goatIcon"
             messageElement.appendChild(img)
+            messageElement.classList = "messageGoat"
         }
 
         messageElement.appendChild(senderElement);
@@ -32,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         chatMessages.appendChild(messageElement);
 
         scrollToBottom();
+        setTimeout(() => wrapper.scrollIntoView({ behavior: "smooth" }), 600)
     }
 
     chatForm.addEventListener("submit", async function (event) {
