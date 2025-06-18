@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const chatForm = document.getElementById("chat-form");
     const userInput = document.getElementById("user-input");
     const chatMessages = document.getElementById("chat-messages");
+    const toggle = document.getElementById('switchs');
 
     const OLLAMA_API_URL = "http://localhost:11434/api/chat";
 
@@ -212,4 +213,31 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
-});
+    function applyTheme(themeName) {
+        document.documentElement.setAttribute("data-theme", themeName);
+        localStorage.setItem("themePreference", themeName);
+        console.log("Thème appliqué et sauvegardé :", themeName);
+    }
+
+    function switchs() {
+        const currentTheme = localStorage.getItem("themePreference");
+        if (currentTheme === "dark") {
+            applyTheme("clair");
+        } else {
+            applyTheme("dark");
+        }
+    }
+
+    (function initializeTheme() {
+        const savedTheme = localStorage.getItem("themePreference");
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme("light");
+        }
+    })();
+
+    if (toggle){
+        toggle.addEventListener("click", switchs);
+    }
+}); 

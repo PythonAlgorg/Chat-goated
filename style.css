@@ -1,6 +1,6 @@
 body {
  font-family: Arial, sans-serif; 
- background-image:linear-gradient(to right, #00a413, rgb(0, 0, 0) ); 
+ background-image:var(--bg-image); 
  margin: 0; 
  padding: 0; 
  line-height: 1.6;
@@ -8,6 +8,13 @@ body {
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ }
+
+ footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: right;
  }
 .chat-container {
     min-width: 350px;
@@ -45,7 +52,7 @@ body {
     position: fixed;
 }
 .bouton {
-    background-color: #00a413;
+    background-color: var(--button-click);
     color: rgb(0, 0, 0);
     border: none;
     padding: 10px 15px;
@@ -176,7 +183,7 @@ body {
  }
 }
 .messageGoat{
-    background-color: rgb(0, 0, 0);
+    background-color: var(--message-goat);
     border-radius: 10px;
     opacity: 0.8;
     max-width: auto;
@@ -186,17 +193,31 @@ body {
     animation-fill-mode: forwards;
     padding: auto;
     padding-left: 5px;
+    color: var(--color-goat);
 }
 .messagetrinity{
-    background-color: #00a413;
+    background-color:var(--message-trinity);
+    color: white;
     opacity: 0.8;
     border-radius: 10px;
     max-width: auto;
     animation: scale-up-ver-bottom 0.4s ease;
-    opacity: 0;
     animation-fill-mode: forwards;
     padding-right: 5px;
     padding-left: 5px;
+}
+.messageSystem{
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 10px;
+    max-width: auto;
+    animation: scale-up-ver-bottom 0.4s ease;
+    animation-fill-mode: forwards;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: beige;
+    
+
 }
 
 @keyframes scale-up-ver-bottom {
@@ -212,7 +233,7 @@ body {
   }
 }
 .reset-button {
- background-color: var(--reset-button-bg, #00a413);
+ background-color: var(--button-new);
  color: var(--reset-button-text, rgb(0, 0, 0));
  border: none;
  padding: 10px 20px;
@@ -225,7 +246,7 @@ body {
  }
 
  .reset-button:hover {
- background-color: var(--reset-button-hover-bg, #00760e);
+ background-color: var(--button-new);
  transform: translateY(-1px);
  }
  .loader-hidden {
@@ -261,3 +282,110 @@ body {
  transform: rotate(360deg);
  }
  }
+
+ :root {
+    --bg-image:linear-gradient(to right, #00a413, rgb(0, 0, 0) );
+    --button-click: #00a413;
+    --button-new:var(--reset-button-bg, #00a413);
+    --footer-bg: linear-gradient(to right, #00a413, rgb(0, 0, 0) );
+    --message-goat: black;
+    --color-goat: white;
+    --message-trinity: #00a413;
+
+ }
+ html[data-theme="clair"] {
+    --bg-image: linear-gradient(to right, blue, #FFFF );
+    --button-click:blue;
+    --button-new: var(--reset-button-bg,blue);
+    --footer-bg: linear-gradient(to right, blue, #FFFF );
+    --message-goat:white;
+    --color-goat: black;
+    --message-trinity: blue;
+ }
+
+ html {
+ box-sizing: border-box;
+ }
+ *,
+ *:before,
+ *:after {
+ box-sizing: inherit;
+ }
+
+ /* From Uiverse.io by juanpabl0svn */ 
+/* The switch - the box around the slider */
+.switchs {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  cursor: pointer;
+}
+
+/* Hide default HTML checkbox */
+.switchs input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  --background:black;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: 0.5s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 8px -4px 0px 0px #ececd9, -4px 1px 4px 0px #dadada;
+  background: var(--background);
+  transition: 0.5s;
+}
+
+.decoration {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 2px;
+  border-radius: 50%;
+  right: 20%;
+  top: 15%;
+  background: #e5f041e6;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s;
+  box-shadow: -7px 10px 0 #e5f041e6, 8px 15px 0 #e5f041e6, -17px 1px 0 #e5f041e6,
+    -20px 10px 0 #e5f041e6, -7px 23px 0 #e5f041e6, -15px 25px 0 #e5f041e6;
+}
+
+input:checked ~ .decoration {
+  transform: translateX(-20px);
+  width: 10px;
+  height: 10px;
+  background: white;
+  box-shadow: -12px 0 0 white, -6px 0 0 1.6px white, 5px 15px 0 1px white,
+    1px 17px 0 white, 10px 17px 0 white;
+}
+
+input:checked + .slider {
+  background-color: #5494de;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 15px -4px 0px 15px #efdf2b, 0 0 10px 0px #efdf2b;
+}
