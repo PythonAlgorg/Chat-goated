@@ -26,14 +26,17 @@ document.addEventListener("DOMContentLoaded", function () {
             messageElement.classList = "messagetrinity"
         }
         
-        else{
+        if(sender === "Chat goated"){
             const img = document.createElement('img');
             img.src = "./assets/images/goat.svg" //<-- met ta source ici
             img.id = "goatIcon"
             messageElement.appendChild(img)
             messageElement.classList = "messageGoat"
+        } 
+        else {
+            messageElement.style.textAlign = "center";
+            messageElement.classList.add = "messageSystem"; 
         }
-
         messageElement.appendChild(senderElement);
         messageElement.appendChild(textElement);
 
@@ -88,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 role: "assistant",
                 content: data.message.content,
             });
+            
 
             appendMessage("Chat goated", data.message.content);
             saveConversationHistory();
@@ -157,10 +161,15 @@ document.addEventListener("DOMContentLoaded", function () {
             conversationHistory = JSON.parse(savedHistory);
 
             chatMessages.innerHTML = "";
+            appendMessage("Système", "Voici où tu en étais")
 
             conversationHistory.forEach((message) => {
-                const sender = message.role === "user" ? "trinity on" : "Chat goated";
+                const sender = message.role === "user" ? "Trinity on" : "Chat goated";
+                if(sender === "Trinity on") {
+                    appendMessage("Trinity on", message.content);
+                } else {
                 appendMessage(sender, message.content);
+                }
             });
             console.log("Historique de conversation chargé.");
          } else {
