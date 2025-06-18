@@ -65,7 +65,7 @@ body {
     position: fixed;
 }
 .bouton:hover{
-    background-color: #00760e;
+    background-color:var(--button-click-hover);
 }
 #user-input{
     opacity: 0.3; 
@@ -247,7 +247,7 @@ body {
  }
 
  .reset-button:hover {
- background-color: var(--button-new);
+ background-color: var(--button-new-hover);
  transform: translateY(-1px);
  }
  .loader-hidden {
@@ -292,6 +292,8 @@ body {
     --message-goat: black;
     --color-goat: white;
     --message-trinity: #00a413;
+    --button-click-hover:  #00760e;
+    --button-new-hover: #00760e;
 
  }
  html[data-theme="clair"] {
@@ -302,6 +304,8 @@ body {
     --message-goat:white;
     --color-goat: black;
     --message-trinity: blue;
+    --button-click-hover: rgb(0, 0, 142);
+    --button-new-hover: rgb(0, 0, 142);
  }
 
  html {
