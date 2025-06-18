@@ -8,6 +8,7 @@ body {
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ transition: background-image 10s ease, color 10s ease;
  }
 
  footer{
