@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const OLLAMA_API_URL = "http://localhost:11434/api/chat";
 
+    
+
     let conversationHistory = [];
 
     function appendMessage(sender, text) {
@@ -38,19 +40,17 @@ document.addEventListener("DOMContentLoaded", function () {
         chatMessages.appendChild(messageElement);
 
         scrollToBottom();
-        setTimeout(() => wrapper.scrollIntoView({ behavior: "smooth" }), 600)
+        setTimeout(() => chatMessages.scrollIntoView({ behavior: "smooth" }), 600)
     }
 
     chatForm.addEventListener("submit", async function (event) {
         event.preventDefault();
-        const img = document.createElement('img');
-        img.src = "./assets/images/phi.svg" //<-- met ta source ici
-        img.id = "phiIcon"
-        messageElement.appendChild(img)
+        const resetChatButton = document.getElementById("reset-button");
         const userMessage = userInput.value.trim();
         if (!userMessage) return;
 
         appendMessage("Trinity on", userMessage);
+        saveConversationHistory();
         userInput.value = "";
         userInput.focus();
 
@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             appendMessage("Chat goated", data.message.content);
+            saveConversationHistory();
         } catch (error) {
             console.error(
                 "Erreur lors de la communication avec Ollama:",
@@ -139,5 +140,47 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         requestAnimationFrame(animateScroll);
     }
-});
+    function saveConversationHistory() {
+        localStorage.setItem(
+            "conversationHistory",
+            JSON.stringify(conversationHistory)
+        );
+        console.log("Historique de conversation sauvegardé.");
+    }
+    function loadConversationHistory() {
+        const savedHistory = localStorage.getItem("conversationHistory");
+        if (savedHistory) {
+            conversationHistory = JSON.parse(savedHistory);
 
+            chatMessages.innerHTML = "";
+
+            conversationHistory.forEach((message) => {
+                const sender = message.role === "user" ? "trinity on" : "Chat goated";
+                appendMessage(sender, message.content);
+            });
+            console.log("Historique de conversation chargé.");
+         } else {
+            appendMessage(
+                "Système",
+                "Bienvenue ! Posez votre première question à l'IA."
+            );
+            console.log("Aucun historique de conversation trouvé.");
+        }
+    }
+    function resetConversation() {
+        conversationHistory = [];
+        chatMessages.innerHTML = "";
+        userInput.value = "";
+        userInput.focus();
+        appendMessage(
+            "Système",
+            "Nouvelle conversation démarrée. Posez votre première question !"
+        );
+        console.log("Conversation réinitialisée.");
+       localStorage.removeItem("conversationHistory");
+    }
+    if (resetButton) {
+         resetButton.addEventListener("click", resetConversation);
+    }
+    loadConversationHistory()
+});

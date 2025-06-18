@@ -1,0 +1,48 @@
+function saveConversationHistory(){
+        localStorage.setItem(
+            "conversationHistory",
+            JSON.stringify(conversationHistory)
+        );
+        console.log("Historique sauvegardé");
+    }
+    function loadConversationHistory(){
+        const savedHistory = localStorage.getItem(conversationHistory);
+        if(savedHistory){
+            conversationHistory = JSON.parse(savedHistory);
+
+            chatMessages.innerHTML = "";
+
+            conversationHistory.forEach((message)=>{
+                const sender = message.role === "user" ? "trinityon" : "Chat goated";
+                appendMessage(sender, message.content);
+            });
+        }else {
+            appendMessage(
+                "Système",
+                "Bienvenue ! posez votre première quesiton au goat"
+            );
+            console.log("Aucun historique trouvé");
+        }
+    }
+
+    css 
+    .reset-button{
+    background-color: #00a413;
+    text-align: right;
+    position: fixed;
+    justify-content: right;
+    justify-content: right;
+    border: #000000;
+    border-radius: 20px;
+    display: flex;
+}
+.reset-button:hover{
+    background-color: #00760e;
+    transform: translateY(-1px);    
+}
+
+html 
+<div><button id="reset-save" class="reset-button">
+            Nouvelle conversation
+        </button>
+        </div>

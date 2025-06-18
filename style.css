@@ -184,6 +184,8 @@ body {
     animation: scale-up-ver-bottom 0.4s ease;
     opacity: 0;
     animation-fill-mode: forwards;
+    padding: auto;
+    padding-left: 5px;
 }
 .messagetrinity{
     background-color: #00a413;
@@ -193,6 +195,8 @@ body {
     animation: scale-up-ver-bottom 0.4s ease;
     opacity: 0;
     animation-fill-mode: forwards;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 @keyframes scale-up-ver-bottom {
@@ -207,3 +211,20 @@ body {
     opacity: 1;
   }
 }
+.reset-button {
+ background-color: var(--reset-button-bg, #00a413);
+ color: var(--reset-button-text, rgb(0, 0, 0));
+ border: none;
+ padding: 10px 20px;
+ border-radius: 5px;
+ cursor: pointer;
+ font-size: 16px;
+ margin-bottom: 15px;
+ transition: background-color 0.2s ease, transform 0.1s ease;
+ align-self: flex-start;
+ }
+
+ .reset-button:hover {
+ background-color: var(--reset-button-hover-bg, #00760e);
+ transform: translateY(-1px);
+ }
