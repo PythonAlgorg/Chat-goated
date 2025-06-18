@@ -228,3 +228,36 @@ body {
  background-color: var(--reset-button-hover-bg, #00760e);
  transform: translateY(-1px);
  }
+ .loader-hidden {
+ display: none !important; /* !important assure que cette règle prévaut */
+ }
+
+ #loader {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 15px 0;
+ color: var(--loader-text-color, #777777);
+ font-style: italic;
+ font-size: 14px;
+ margin-top: 10px;
+ }
+
+ .spinner {
+ width: 24px;
+ height: 24px;
+ border: 3px solid rgba(0, 0, 0, 0.1);
+ border-left-color: var(--spinner-active-color, #007bff);
+ border-radius: 50%; /* Pour une forme de cercle */
+ animation: spinAnimation 0.8s linear infinite; /* Animation de rotation */
+ margin-right: 10px; /* Espace entre le spinner et le texte */
+ }
+
+ @keyframes spinAnimation {
+ 0% {
+ transform: rotate(0deg);
+ }
+ 100% {
+ transform: rotate(360deg);
+ }
+ }

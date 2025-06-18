@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
         userInput.value = "";
         userInput.focus();
 
+        toggleLoaderVisibility(true);
+
         try {
             conversationHistory.push({
                 role: "user",
@@ -98,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Système",
                 "Désolé, une erreur est survenue lors de la communication avec l'IA."
             );
+        } finally {
+            toggleLoaderVisibility(false);
         }
     });
 
@@ -182,5 +186,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (resetButton) {
          resetButton.addEventListener("click", resetConversation);
     }
+    function saveConversationHistory() {
+        localStorage.setItem(
+            "conversationHistory",
+            JSON.stringify(conversationHistory)
+        );
+        console.log("Historique de conversation sauvegardé.");
+    }
     loadConversationHistory()
+    function toggleLoaderVisibility(show) {
+        if (loader) {
+            if (show) {
+                loader.classList.remove("loader-hidden");
+            } else {
+                loader.classList.add("loader-hidden");
+            }
+        }
+    }
 });
