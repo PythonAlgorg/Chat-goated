@@ -228,8 +228,21 @@ document.addEventListener("DOMContentLoaded", function () {
     function applyTheme(themeName) {
         document.documentElement.setAttribute("data-theme", themeName);
         localStorage.setItem("themePreference", themeName);
+
+        const bgLight = document.getElementById("bg-light");
+        const bgDark = document.getElementById("bg-dark");
+
+        if (themeName === "clair") {
+            bgLight.style.opacity = "1";
+            bgDark.style.opacity = "0";
+        } else {
+            bgLight.style.opacity = "0";
+            bgDark.style.opacity = "1";
+        }
+
         console.log("Thème appliqué et sauvegardé :", themeName);
     }
+
 
     function switchs() {
         const currentTheme = localStorage.getItem("themePreference");

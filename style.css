@@ -1,6 +1,5 @@
 body {
- font-family: Arial, sans-serif; 
- background-image:var(--bg-image); 
+ font-family: Arial, sans-serif;  
  margin: 0; 
  padding: 0; 
  line-height: 1.6;
@@ -8,10 +7,23 @@ body {
  flex-direction: column;
  justify-content: center;
  align-items: center;
- transition: background-image 10s ease, color 10s ease;
  }
 
- footer{
+.Titre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+.Titre img {
+    height: 40px;
+    object-fit: contain;
+}
+.Titre h1{
+    display: flex;
+}
+
+footer{
     display: flex;
     flex-direction: column;
     justify-content: right;
@@ -114,29 +126,6 @@ body {
   max-width: 400px;
   width: auto;
   height: auto;
-}
-
-
-.Titre {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-}
-.Titre img {
-    height: 40px;
-    object-fit: contain;
-}
-.Titre h1{
-    display: flex;
-}
-#chat-messages {
-  height: auto;
-  max-height: 400px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  text-align: left;
-  
 }
 
 @keyframes fadeInFromBottom {
@@ -433,4 +422,25 @@ input:checked + .slider:before {
   .bouton {
     display: none;
   }
+}
+
+.bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 2s ease;
+}
+
+#bg-light {
+  background-image: linear-gradient(to right, blue, #FFFF);
+  opacity: 0;
+} 
+
+#bg-dark {
+  background-image: linear-gradient(to right, #00a413, black);
+  opacity: 1;
 }
