@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const OLLAMA_API_URL = "http://localhost:11434/api/chat";
 
-    
+    let username = localStorage.getItem('nomUser') || prompt("Quel est ton pseudo ?");
+    localStorage.setItem('nomUser', username)
 
     let conversationHistory = [];
 
@@ -22,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const formattedText = formatCodeBlocks(text);
         textElement.innerHTML = formattedText;
 
-        if(sender === "Trinity on"){
+        if(sender === username ){
             messageElement.style.float = "right";
-            messageElement.classList = "messagetrinity"
+            messageElement.classList = "messageuser";
         }
         
         if(sender === "Chat goated"){
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const userMessage = userInput.value.trim();
         if (!userMessage) return;
 
-        appendMessage("Trinity on", userMessage);
+        appendMessage(username, userMessage);
         saveConversationHistory();
         userInput.value = "";
         userInput.focus();
@@ -70,10 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const requestData = {
                 model: "llama3.2:3b",
-                messages: messages,
+                messages: [
+                    { role: "system", content: `L'utilisateur s'appelle ${username}` },
+                    ...conversationHistory
+                ],
                 stream: false,
             };
-
             const response = await fetch(OLLAMA_API_URL, {
                 method: "POST",
                 headers: {
@@ -165,15 +168,18 @@ document.addEventListener("DOMContentLoaded", function () {
             appendMessage("Système", "Voici où tu en étais")
 
             conversationHistory.forEach((message) => {
-                const sender = message.role === "user" ? "Trinity on" : "Chat goated";
-                if(sender === "Trinity on") {
-                    appendMessage("Trinity on", message.content);
+                const sender = message.role === "user" ? username : "Chat goated";
+                if(sender === username) {
+                    appendMessage(username, message.content);
                 } else {
-                appendMessage(sender, message.content);
+                    appendMessage("Chat goated", message.content);
                 }
             });
             console.log("Historique de conversation chargé.");
          } else {
+            username = prompt("Quel est ton pseudo ?");
+                if (!username) username = "Anonyme";
+            localStorage.setItem('nomUser', username);
             appendMessage(
                 "Système",
                 "Bienvenue ! Posez votre première question à l'IA."
@@ -186,13 +192,19 @@ document.addEventListener("DOMContentLoaded", function () {
         chatMessages.innerHTML = "";
         userInput.value = "";
         userInput.focus();
+        localStorage.removeItem('nomUser');
+        username = prompt("Quel est ton nouveau pseudo ?");
+        if (!username) username = "Anonyme";
+        localStorage.setItem('nomUser', username);
+
         appendMessage(
             "Système",
             "Nouvelle conversation démarrée. Posez votre première question !"
-        );
-        console.log("Conversation réinitialisée.");
-       localStorage.removeItem("conversationHistory");
+            );
+        console.log("Conversation et pseudo réinitialisés.");
+        localStorage.removeItem("conversationHistory");
     }
+
     if (resetButton) {
          resetButton.addEventListener("click", resetConversation);
     }

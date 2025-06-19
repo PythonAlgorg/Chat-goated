@@ -196,8 +196,8 @@ body {
     padding-left: 5px;
     color: var(--color-goat);
 }
-.messagetrinity{
-    background-color:var(--message-trinity);
+.messageuser{
+    background-color:var(--message-user);
     color: white;
     opacity: 0.8;
     border-radius: 10px;
@@ -291,7 +291,7 @@ body {
     --footer-bg: linear-gradient(to right, #00a413, rgb(0, 0, 0) );
     --message-goat: black;
     --color-goat: white;
-    --message-trinity: #00a413;
+    --message-user: #00a413;
     --button-click-hover:  #00760e;
     --button-new-hover: #00760e;
 
@@ -303,7 +303,7 @@ body {
     --footer-bg: linear-gradient(to right, blue, #FFFF );
     --message-goat:white;
     --color-goat: black;
-    --message-trinity: blue;
+    --message-user: blue;
     --button-click-hover: rgb(0, 0, 142);
     --button-new-hover: rgb(0, 0, 142);
  }
@@ -317,7 +317,7 @@ body {
  box-sizing: inherit;
  }
 
- /* From Uiverse.io by juanpabl0svn */ 
+/* From Uiverse.io by juanpabl0svn */ 
 /* The switch - the box around the slider */
 .switchs {
   font-size: 17px;
