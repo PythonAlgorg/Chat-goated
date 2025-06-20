@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat IA</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/images/goat.png">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/images/goat.png" />
+  </head>
 
-<body>
+  <body>
     <div id="bg-light" class="bg-gradient"></div>
     <div id="bg-dark" class="bg-gradient"></div>
     <div class="Titre">
-        <img src="assets/images/goat.png">
-        <h1>Chat goated</h1>
+      <img src="assets/images/goat.png" />
+      <h1>Chat goated</h1>
     </div>
-    <div><button id="resetButton" class="reset-button">
-        Nouvelle conv
-    </button>
+    <div>
+      <button id="resetButton" class="reset-button">Nouvelle conv</button>
     </div>
     <div class="chat-container">
-    
+      <div id="chat-messages" class="chat-messages"></div>
 
-        <div id="chat-messages" class="chat-messages"></div>
-
-        <div id="loading-indicator" class="loading-indicator" style="display: none;">
-            En attente de réponse...
-        </div>
-        <div id="loader" class="loader-hidden">
+      <div
+        id="loading-indicator"
+        class="loading-indicator"
+        style="display: none"
+      >
+        En attente de réponse...
+      </div>
+      <div id="loader" class="loader-hidden">
         <div class="spinner"></div>
         <p>L'IA est en train d'écrire...</p>
-        </div>
-
+      </div>
     </div>
     <form id="chat-form" class="chat-form">
-        <div class="input-wrapper">
-            <input type="text" id="user-input" placeholder="Posez votre question..." autocomplete="off">
-            <button class="bouton" type="submit">Envoyer</button>
-        </div>
-        </form>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Posez votre question..."
+          autocomplete="off"
+        />
+        <button class="bouton" type="submit">Envoyer</button>
+      </div>
+    </form>
     <script src="javascript/api.js" type="module"></script>
-</body>
-<footer>
+  </body>
+  <footer>
     <label for="switchs" class="switchs">
-        <input id="switchs" type="checkbox" />
-        <span class="slider"></span>
-        <span class="decoration"></span>
+      <input id="switchs" type="checkbox" />
+      <span class="slider"></span>
+      <span class="decoration"></span>
     </label>
-</footer>
-
+  </footer>
 </html>
