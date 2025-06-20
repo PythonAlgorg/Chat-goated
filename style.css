@@ -83,6 +83,9 @@ footer {
   position: relative;
   scrollbar-width: none;
 }
+.chat-container::-webkit-scrollbar {
+  width: none; /* Largeur de la scrollbar */
+}
 
 /* === CHAT FORM === */
 .chat-form,
